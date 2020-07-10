@@ -1,0 +1,12 @@
+greeting: Hello ${from.first_name}! This is small wheather bot.
+help: |
+  For quick configuration use <code>/conf</code>
+  You can use <code>/setam</code> to set alarm for today wheather and <code>/setpm</code> to set alarm for tomorrow wheather.
+  Type <code>/ru</code> to change locale to russian.
+switched: 🇺🇸🇺🇸🇺🇸
+# config_label:
+# config:
+# help_label:
+# help:
+# about_label:
+# about:
