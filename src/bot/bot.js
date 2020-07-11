@@ -1,15 +1,13 @@
 const commandParts = require('telegraf-command-parts');
-const { bot, i18n, localSession, property } = require('./config');
+const { bot, i18n, localSession, stageConfig } = require('./config');
 const { getCurrentWheather } = require('./wheather');
-const Keyboard = require('telegraf-keyboard');
+const { getMainKeyboard, getLangInline } = require('./keyboards');
 
-const mainMenu = new Keyboard({ inline: false });
-mainMenu
-  .add('', 'Item 2', 'Item 3') // first line
-  .add('config', 'help');
+const property = 'session';
 
 bot.use(localSession.middleware(property));
 bot.use(i18n.middleware());
+bot.use(stageConfig.middleware());
 bot.use(commandParts());
 bot.use(async (ctx, next) => {
   const start = new Date();
@@ -22,33 +20,25 @@ bot.catch((err, ctx) => {
   console.log(`Ooops, encountered an error for ${ctx.updateType}`, err);
 });
 
-bot.start(({ i18n, replyWithHTML }) => {
-  const startKeyboard = new Keyboard({ inline: true });
-  startKeyboard.add('🇺🇸:en', '🇷🇺:ru');
-  replyWithHTML(`${i18n.t('greeting')}\n\nВыберите, пожалуйста язык.\nPlease, choose language`, startKeyboard.draw());
-});
+bot.start(({ i18n, replyWithHTML }) =>
+  replyWithHTML(`${i18n.t('greeting')}\n\nВыберите, пожалуйста язык.\nPlease, choose language`, getLangInline())
+);
 
-bot.action(['ru', 'en'], ({ i18n, deleteMessage, match, reply }) => {
+bot.action(['ru', 'en'], ({ i18n, deleteMessage, match, replyWithHTML }) => {
   i18n.locale(match);
-  return [deleteMessage(), reply(i18n.t('switched'), mainMenu.draw())];
+  return [deleteMessage(), replyWithHTML(i18n.t('switched'), getMainKeyboard(i18n))];
 });
 
-bot.hears(['help', '/help'], ({ i18n, replyWithHTML }) => replyWithHTML(i18n.t('help')));
-bot.hears(['config', '/config'], ({ i18n, replyWithHTML }) => {
-  replyWithHTML(i18n.t('help'));
+bot.hears(['⚙️настройки', '⚙️configuration', '/conf'], ({ scene }) => scene.enter('config'));
+bot.command('ru', ({ i18n, replyWithHTML }) => {
+  i18n.locale('ru');
+  replyWithHTML(i18n.t('switched'));
 });
-
-bot.command('echo', (ctx) => {
-  return ctx.reply(ctx.state.command.args);
+bot.command('en', ({ i18n, replyWithHTML }) => {
+  i18n.locale('en');
+  replyWithHTML(i18n.t('switched'));
 });
-
-bot.command('rkb', ({ reply, i18n }) => {
-  return reply(i18n.t('switched'), mainMenu.clear());
-});
-
-bot.command('skb', ({ reply, i18n }) => {
-  return reply(i18n.t('switched'), mainMenu.draw());
-});
+bot.help(({ i18n, replyWithHTML }) => replyWithHTML(i18n.t('help')));
 
 bot.on('text', (ctx, next) => {
   ctx[property].counter = ctx[property].counter || 0;

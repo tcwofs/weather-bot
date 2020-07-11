@@ -827,13 +827,6 @@ telegraf-i18n@^6.6.0:
     debug "^4.0.1"
     js-yaml "^3.6.1"
 
-telegraf-keyboard@^1.1.2:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/telegraf-keyboard/-/telegraf-keyboard-1.1.2.tgz#445c1efd51bfcd09a6a816e1b4c6c8255cce60c2"
-  integrity sha512-0yEsI8M5YdQQQmKa4xijt6glZREwhs2G82P7x2wrUlmfebKo79AiilhD/w3fgR1kcFFfNbFF2LQzovStBSviQQ==
-  dependencies:
-    telegraf "^3.29.0"
-
 telegraf-session-local@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/telegraf-session-local/-/telegraf-session-local-1.0.3.tgz#3fdf73041101a54b6fd6363b4f3efe9fb068b383"
@@ -842,7 +835,7 @@ telegraf-session-local@^1.0.3:
     "@types/lowdb" "^1.0.9"
     lowdb "^1.0.0"
 
-telegraf@^3.1.0, telegraf@^3.29.0, telegraf@^3.36.0:
+telegraf@^3.1.0, telegraf@^3.36.0:
   version "3.38.0"
   resolved "https://registry.yarnpkg.com/telegraf/-/telegraf-3.38.0.tgz#745b447547a8e6cdb626055e4d616058aaae0759"
   integrity sha512-va4VlrKWp64JrowFoZX/NPzzA6q38kvaIukVXOWFO1V+jR1G8+hCfgJy4TX8Z3rwLJzwaBEet1QhikHDRZWl3A==

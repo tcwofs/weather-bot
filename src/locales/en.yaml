@@ -1,12 +1,17 @@
+switched: 🇺🇸🇺🇸🇺🇸
+help_label: ❓help
+city_label: 🏢Set city
+config_label: ⚙️configuration
+set_alarm_label: 🕐Set notification
+del_alarm_label: ❌Delete notification
+back_label: ⬅️Back
+about_label: ℹ️About
 greeting: Hello ${from.first_name}! This is small wheather bot.
 help: |
   For quick configuration use <code>/conf</code>
   You can use <code>/setam</code> to set alarm for today wheather and <code>/setpm</code> to set alarm for tomorrow wheather.
   Type <code>/ru</code> to change locale to russian.
-switched: 🇺🇸🇺🇸🇺🇸
-# config_label:
-# config:
-# help_label:
-# help:
-# about_label:
-# about:
+config: You entered config menu. Here you can set notifications and set city
+about: |
+  asd
+return_message: To return back use <code>/cancel</code>

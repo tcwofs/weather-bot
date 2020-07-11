@@ -1,16 +1,17 @@
 const Telegraf = require('telegraf');
 const I18n = require('telegraf-i18n');
 const LocalSession = require('telegraf-session-local');
+const Stage = require('telegraf/stage');
+const { config } = require('./scenes/sceneConfig');
 
 require('dotenv').config();
 
 const bot = new Telegraf(process.env.BOT_TOKEN);
-const property = 'data';
 
 const i18n = new I18n({
   directory: 'src/locales',
   defaultLanguage: 'en',
-  sessionName: property,
+  sessionName: 'session',
   useSession: true,
   templateData: {
     pluralize: I18n.pluralize,
@@ -33,9 +34,13 @@ localSession.DB.then((DB) => {
   console.log('Current LocalSession DB:', DB.value());
 });
 
+// Create scene manager
+const stageConfig = new Stage();
+stageConfig.register(config);
+
 module.exports = {
   i18n,
   bot,
   localSession,
-  property,
+  stageConfig,
 };
