@@ -1,16 +1,28 @@
-const Stage = require('telegraf/stage');
 const Scene = require('telegraf/scenes/base');
-const { getMainKeyboard, getConfigInline } = require('../keyboards');
+const { getNotifInline, getBackKeyboard } = require('../keyboards');
 
-// Greeter scene
 const delNotif = new Scene('delNotifScene');
 
-delNotif.enter(({ i18n, replyWithHTML }) => replyWithHTML(`${i18n.t('city')}`, getConfigInline(i18n)));
-delNotif.action('exit', ({ scene }) => scene.enter('configScene'));
-
-delNotif.hears(['⬅️Back', '⬅️Вернуться', '/cancel'], Stage.leave());
-delNotif.on('message', (ctx) => ctx.reply('Send `hi`'));
-delNotif.leave(({ i18n, replyWithHTML }) => replyWithHTML('⬅️', getMainKeyboard(i18n)));
+delNotif.enter(({ i18n, replyWithHTML, session }) => {
+  let notifications = session.notif.filter((el) => el.time !== null);
+  if (notifications.length > 0) {
+    return [
+      replyWithHTML(`${i18n.t('notif_del')}`, getBackKeyboard(i18n)),
+      replyWithHTML(`${notifications.map((el) => `${el.name}: <b>${el.time}</b>\n`).join('')}`, getNotifInline(notifications)),
+    ];
+  } else {
+    return replyWithHTML(`${i18n.t('notif_del_null')}`, getBackKeyboard(i18n));
+  }
+});
+delNotif.hears(['⬅️Back', '⬅️Вернуться', '/cancel'], ({ scene }) => scene.enter('configScene'));
+delNotif.action(/\d/, ({ deleteMessage, i18n, match, session, replyWithHTML }) => {
+  if (session.notif[match[0] - 1].time !== null) {
+    session.notif[match[0] - 1].time = null;
+    return replyWithHTML(i18n.t('notif_del_confirm'));
+  } else {
+    return replyWithHTML(i18n.t('notif_deleted'));
+  }
+});
 
 module.exports = {
   delNotif,

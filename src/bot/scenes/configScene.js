@@ -7,8 +7,8 @@ config.enter(({ i18n, replyWithHTML }) => replyWithHTML(`${i18n.t('config')}`, g
 config.hears(['⬅️Back', '⬅️Вернуться', '/cancel'], ({ scene }) => scene.enter('mainScene'));
 config.hears(['🏢Set city', '🏢Указать город'], ({ scene }) => scene.enter('setCityScene'));
 config.hears(['🕐Set notification', '🕐Уст. напоминание'], ({ scene }) => scene.enter('setNotifScene'));
-config.hears(['❌Delete notification', '❌Уд. напоминание'], ({ scene }) => scene.enter('delNotifScebe'));
-config.hears(['ℹ️About', 'ℹ️О проект'], ({ scene }) => scene.enter('aboutScene'));
+config.hears(['❌Delete notification', '❌Уд. напоминание'], ({ scene }) => scene.enter('delNotifScene'));
+config.hears(['ℹ️About', 'ℹ️О проекте'], ({ scene }) => scene.enter('aboutScene'));
 config.on('message', ({ i18n, replyWithHTML }) => replyWithHTML(`${i18n.t('config')}`));
 config.leave(({ i18n, replyWithHTML }) => replyWithHTML('⬅️', getMainKeyboard(i18n)));
 

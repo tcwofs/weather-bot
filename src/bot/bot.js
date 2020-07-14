@@ -19,9 +19,33 @@ bot.catch((err, ctx) => {
 
 bot.start(({ i18n, replyWithHTML }) => replyWithHTML(`${i18n.t('lang')}`, getLangInline()));
 
-bot.action(['ru', 'en'], ({ i18n, deleteMessage, match, replyWithHTML, scene }) => {
+bot.action(['ru', 'en'], ({ i18n, deleteMessage, match, replyWithHTML, scene, session }) => {
+  if (!session.notif) {
+    session.notif = [
+      {
+        name: '1',
+        time: null,
+      },
+      {
+        name: '2',
+        time: null,
+      },
+      {
+        name: '3',
+        time: null,
+      },
+      {
+        name: '4',
+        time: null,
+      },
+    ];
+  }
   i18n.locale(match);
   return [deleteMessage(), replyWithHTML(i18n.t('switched')), scene.enter('mainScene')];
+});
+
+bot.on('text', () => {
+  bot.telegram.sendMessage('259191285:259191285', 'xd');
 });
 
 bot.help(({ i18n, replyWithHTML }) => replyWithHTML(i18n.t('help')));

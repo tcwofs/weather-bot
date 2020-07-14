@@ -1,16 +1,11 @@
-const Stage = require('telegraf/stage');
 const Scene = require('telegraf/scenes/base');
-const { getMainKeyboard, getConfigInline } = require('../keyboards');
+const { getBackKeyboard } = require('../keyboards');
 
-// Greeter scene
 const about = new Scene('aboutScene');
 
-about.enter(({ i18n, replyWithHTML }) => replyWithHTML(`${i18n.t('city')}`, getConfigInline(i18n)));
-about.action('exit', ({ scene }) => scene.enter('configScene'));
-
-about.hears(['⬅️Back', '⬅️Вернуться', '/cancel'], Stage.leave());
-about.on('message', (ctx) => ctx.reply('Send `hi`'));
-about.leave(({ i18n, replyWithHTML }) => replyWithHTML('⬅️', getMainKeyboard(i18n)));
+about.enter(({ i18n, replyWithHTML }) => replyWithHTML(`${i18n.t('about')}`, getBackKeyboard(i18n)));
+about.hears(['⬅️Back', '⬅️Вернуться', '/cancel'], ({ scene }) => scene.enter('configScene'));
+about.on('message', (ctx) => ctx.reply('about'));
 
 module.exports = {
   about,

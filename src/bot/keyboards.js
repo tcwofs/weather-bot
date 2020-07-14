@@ -26,10 +26,19 @@ const getBackKeyboard = (i18n) =>
 
 const getConfirmInline = () => Markup.inlineKeyboard([Markup.callbackButton('✅', 'confirm')]).extra();
 
+const getNotifInline = (notifications) => {
+  let buttons = [];
+  for (let i = 1; i <= notifications.length; i++) {
+    buttons.push(Markup.callbackButton(`${notifications[i - 1].name}`, `${notifications[i - 1].name}`));
+  }
+  return Markup.inlineKeyboard(buttons).extra();
+};
+
 module.exports = {
   getMainKeyboard,
   getConfigKeyboard,
   getLangInline,
   getBackKeyboard,
   getConfirmInline,
+  getNotifInline,
 };
