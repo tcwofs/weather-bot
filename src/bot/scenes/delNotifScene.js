@@ -15,9 +15,18 @@ delNotif.enter(({ i18n, replyWithHTML, session }) => {
   }
 });
 delNotif.hears(['⬅️Back', '⬅️Вернуться', '/cancel'], ({ scene }) => scene.enter('configScene'));
-delNotif.action(/\d/, ({ deleteMessage, i18n, match, session, replyWithHTML }) => {
-  if (session.notif[match[0] - 1].time !== null) {
-    session.notif[match[0] - 1].time = null;
+delNotif.action(/\d/, async ({ getChat, sessionDB, i18n, match, session, replyWithHTML, message }) => {
+  let chatInfo = await getChat();
+  let alert = session.notif[match[0] - 1];
+
+  if (alert.time !== null) {
+    let index = sessionDB.__wrapped__.alerts.findIndex((el) => el.id === chatInfo.id.toString() && el.index === match[0]);
+
+    if (index !== -1) {
+      sessionDB.__wrapped__.alerts.splice(index, 1);
+      alert.time = null;
+    }
+
     return replyWithHTML(i18n.t('notif_del_confirm'));
   } else {
     return replyWithHTML(i18n.t('notif_deleted'));
