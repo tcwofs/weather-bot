@@ -1,12 +1,38 @@
-greeting: Hello ${from.first_name}! This is small wheather bot.
-help: |
-  For quick configuration use <code>/conf</code>
-  You can use <code>/setam</code> to set alarm for today wheather and <code>/setpm</code> to set alarm for tomorrow wheather.
-  Type <code>/ru</code> to change locale to russian.
-switched: 🇺🇸🇺🇸🇺🇸
-# config_label:
-# config:
-# help_label:
-# help:
-# about_label:
-# about:
+switched: |
+  🇺🇸🇺🇸🇺🇸
+  Hello ${from.first_name}! This is small wheather bot.
+city_label: 🏢Set city
+config_label: ⚙️configuration
+set_alarm_label: 🕐Set notification
+del_alarm_label: ❌Delete notification
+back_label: ⬅️Back
+about_label: ℹ️About
+lang: |
+  Выберите, пожалуйста язык. Вы всегда можете поменять язык введя <code>/start</code>
+  Please, choose language. You can always change language by typing <code>/start</code>
+main: Main menu
+help: If you stuck use <code>/cancel</code> to exit
+config: |
+  You entered config menu. Here you can set notifications and set city
+  You can use <code>/cancel</code> to leave this section
+about: |
+  This project was written by @tcwofs.
+
+  Full code of the project can be found here::
+  https://github.com/tcwofs/wheather-bot
+return_message: To return back use <code>/cancel</code>
+city: Here you can set your city. Just type it in chat.
+city_q: Your city will be
+city_set: City set to
+city_err: Cannot find city with given name. Please use https://openweathermap.org/ to find right name for your city
+notif: |
+  Here you can set up to 4 notifications.
+  To set notification write 'x yy:yy'.
+  Where x is number of notification and yy:yy is time (24h)
+notif_del: Here you can delete your notifications
+notif_del_null: Nothing to delete.
+notif_deleted: Already deleted.
+notif_del_confirm: Notification deleted
+notif_sorry: Sorry, but bot supports on;y 4 notifications per account
+not_set: empty
+time_err: Time is incorrect.
