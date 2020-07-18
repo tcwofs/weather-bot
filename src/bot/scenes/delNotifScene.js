@@ -15,15 +15,22 @@ delNotif.enter(({ i18n, replyWithHTML, session }) => {
   }
 });
 delNotif.hears(['⬅️Back', '⬅️Вернуться', '/cancel'], ({ scene }) => scene.enter('configScene'));
-delNotif.action(/\d/, async ({ getChat, sessionDB, i18n, match, session, replyWithHTML, message }) => {
+delNotif.action(/\d \d?\d:\d\d/, async ({ getChat, sessionDB, i18n, match, session, replyWithHTML, message }) => {
   let chatInfo = await getChat();
-  let alert = session.notif[match[0] - 1];
+  let num = match[0].split(' ')[0];
+  let time = match[0].split(' ')[1];
+  let hours = `0${+time.split(':')[0] - session.offset}`.substr(-2);
+  let minutes = `0${+time.split(':')[1]}`.substr(-2);
+  time = `${hours}:${minutes}`;
+
+  let alert = session.notif[num - 1];
 
   if (alert.time !== null) {
-    let index = sessionDB.__wrapped__.alerts.findIndex((el) => el.id === chatInfo.id.toString() && el.index === match[0]);
+    let indexTime = sessionDB.__wrapped__.alerts.findIndex((el) => el.time === time);
 
-    if (index !== -1) {
-      sessionDB.__wrapped__.alerts.splice(index, 1);
+    if (indexTime !== -1) {
+      let indexAlert = sessionDB.__wrapped__.alerts[indexTime].arr.findIndex((el) => el.id === chatInfo.id.toString() && el.index === num);
+      sessionDB.__wrapped__.alerts[indexTime].arr.splice(indexAlert, 1);
       alert.time = null;
     }
 

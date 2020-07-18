@@ -15,6 +15,7 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^0.19.2",
+    "cron": "^1.8.2",
     "dotenv": "^8.2.0",
     "telegraf": "^3.36.0",
     "telegraf-i18n": "^6.6.0",

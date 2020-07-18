@@ -2,6 +2,12 @@ switched: |
   🇺🇸🇺🇸🇺🇸
   Hello ${from.first_name}! This is small wheather bot.
 city_label: 🏢Set city
+unit_label: '🧮Units:'
+unit_changed: Units changed to
+unit_metres: m/s
+unit_miles: mph
+unit_pressure: hPa
+unit_m: m
 config_label: ⚙️configuration
 set_alarm_label: 🕐Set notification
 del_alarm_label: ❌Delete notification
@@ -36,3 +42,5 @@ notif_del_confirm: Notification deleted
 notif_sorry: Sorry, but bot supports on;y 4 notifications per account
 not_set: empty
 time_err: Time is incorrect.
+wheather_current: ☂️forecast now
+wheather_days: 📋7d forecast

@@ -5,12 +5,6 @@ const { startWheatherLoop } = require('./wheatherLoop');
 bot.use(localSession.middleware(property));
 bot.use(i18n.middleware());
 bot.use(stageConfig.middleware());
-bot.use(async (ctx, next) => {
-  const start = new Date();
-  await next();
-  const ms = new Date() - start;
-  console.log('Response time: %sms', ms);
-});
 
 startWheatherLoop(bot, localSession);
 
@@ -41,6 +35,7 @@ bot.action(['ru', 'en'], ({ i18n, deleteMessage, match, replyWithHTML, scene, se
       },
     ];
   }
+  if (!session.units) session.units = 'metric';
   i18n.locale(match);
   return [deleteMessage(), replyWithHTML(i18n.t('switched')), scene.enter('mainScene')];
 });
