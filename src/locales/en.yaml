@@ -1,6 +1,7 @@
 switched: |
   🇺🇸🇺🇸🇺🇸
   Hello ${from.first_name}! This is small wheather bot.
+  First of all configure your city in configuration section.
 city_label: 🏢Set city
 unit_label: '🧮Units:'
 unit_changed: Units changed to

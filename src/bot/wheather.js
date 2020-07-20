@@ -148,7 +148,6 @@ ${emoji.temperature}:
     }
 \t\t${emoji.temp.eve}: ${data.daily[day].temp.eve} ${session.units === 'metric' ? '°C' : '°F'}
 \t\t${emoji.temp.night}: ${data.daily[day].temp.night} ${session.units === 'metric' ? '°C' : '°F'}
-
 ${emoji.temperature_feel}:
 \t\t${emoji.temp.morn}: ${data.daily[day].feels_like.morn} ${session.units === 'metric' ? '°C' : '°F'}
 \t\t${emoji.temp.day}: ${data.daily[day].feels_like.day} ${session.units === 'metric' ? '°C' : '°F'}
@@ -194,7 +193,6 @@ ${emoji.temperature}:
     }
 \t\t${emoji.temp.eve}: ${data.daily[day].temp.eve} ${units === 'metric' ? '°C' : '°F'}
 \t\t${emoji.temp.night}: ${data.daily[day].temp.night} ${units === 'metric' ? '°C' : '°F'}
-
 ${emoji.temperature_feel}:
 \t\t${emoji.temp.morn}: ${data.daily[day].feels_like.morn} ${units === 'metric' ? '°C' : '°F'}
 \t\t${emoji.temp.day}: ${data.daily[day].feels_like.day} ${units === 'metric' ? '°C' : '°F'}

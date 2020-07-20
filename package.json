@@ -8,10 +8,6 @@
     "start": "node ./src/index.js",
     "dev": "nodemon ./src/index.js"
   },
-  "engines": {
-    "node": "14.2.0"
-  },
-  "author": "cruelmagpie",
   "license": "MIT",
   "dependencies": {
     "axios": "^0.19.2",
