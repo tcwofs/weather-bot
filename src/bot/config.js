@@ -27,7 +27,7 @@ const localSession = new LocalSession({
     serialize: (obj) => JSON.stringify(obj, null, 2), // null & 2 for pretty-formatted JSON
     deserialize: (str) => JSON.parse(str),
   },
-  state: { messages: [] },
+  state: { alerts: [] },
 });
 
 localSession.DB.then((DB) => {

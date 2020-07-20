@@ -1,2 +1,3 @@
-# wheather-bot
-small wheather bot for telegram
+# weather-bot
+
+small weather bot for telegram
