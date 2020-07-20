@@ -15,7 +15,7 @@ main.hears(['☂️forecast now', '☂️текущий прогноз'], async 
 });
 main.hears(['📋7d forecast', '📋7д прогноз'], async ({ i18n, session, replyWithHTML }) => {
   let res = await getWheatherSevenDays(session.country.coord, session.units, session.__language_code);
-  let answer = formatSevenDayMessage(res.data, session, i18n);
+  let answer = formatSevenDaysMessage(res.data, session, i18n);
 
   return replyWithHTML(answer);
 });

@@ -21,6 +21,8 @@ setNotif.hears(/\d \d?\d:\d\d/, ({ i18n, replyWithHTML, message, session, sessio
     id: `${message.chat.id}`,
     index: `${num}`,
     coord: session.country.coord,
+    lang: session.__language_code,
+    units: session.units,
   };
 
   let previous = session.notif[num - 1].time;

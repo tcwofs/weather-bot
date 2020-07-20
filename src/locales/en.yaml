@@ -17,7 +17,27 @@ lang: |
   Выберите, пожалуйста язык. Вы всегда можете поменять язык введя <code>/start</code>
   Please, choose language. You can always change language by typing <code>/start</code>
 main: Main menu
-help: If you stuck use <code>/cancel</code> to exit
+help: |
+  If you are stuck use <code>/cancel</code>.
+  Notation:
+  📆: date
+  🌅: sunrise
+  🌇: sunset
+  🌡: temperature 
+  🤒: human perception of weather.
+    🌅: morning
+    🏙: day
+    🌇: evening
+    🌃: night
+    🔽: min temperature
+    🔼: max temperature
+  💧: humidity
+  🕰: pressure
+  🌱: dew point
+  🌞: midday uv-index
+  ☁️: cloudiness
+  👁: averagevisibility
+  ⬆️↗️➡️↘️⬇️↙️⬅️↖️: direction of the wind
 config: |
   You entered config menu. Here you can set notifications and set city
   You can use <code>/cancel</code> to leave this section
