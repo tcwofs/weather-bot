@@ -9,6 +9,9 @@ setNotif.enter(({ i18n, replyWithHTML, session }) => {
 });
 setNotif.hears(['⬅️Back', '⬅️Вернуться', '/cancel'], ({ scene }) => scene.enter('configScene'));
 setNotif.hears(/\d \d?\d:\d\d/, ({ i18n, replyWithHTML, message, session, sessionDB }) => {
+  if (!session.country) {
+    return replyWithHTML(i18n.t('city_null'));
+  }
   let num = message.text.split(' ')[0];
   let time = message.text.split(' ')[1];
   let hours = +time.split(':')[0];
