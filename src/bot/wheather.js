@@ -118,7 +118,7 @@ const formatSevenDaysMessage = (data, session, i18n) => {
     let time = new Date(data.daily[day].dt * 1000);
     let sunrise = new Date(data.daily[day].sunrise * 1000);
     let sunset = new Date(data.daily[day].sunset * 1000);
-    let timeMonth = '0' + (time.getMonth() + 1);
+    let timeMonth = '0' + (+time.getMonth() + 1);
     let timeDate = '0' + time.getDate();
     let sunriseHours = '0' + sunrise.getHours();
     let sunriseMinutes = '0' + sunrise.getMinutes();
@@ -165,7 +165,7 @@ const formatTimerMessage = (data, units, lang) => {
     let time = new Date(data.daily[day].dt * 1000);
     let sunrise = new Date(data.daily[day].sunrise * 1000);
     let sunset = new Date(data.daily[day].sunset * 1000);
-    let timeMonth = '0' + time.getMonth();
+    let timeMonth = '0' + (+time.getMonth() + 1);
     let timeDate = '0' + time.getDate();
     let sunriseHours = '0' + sunrise.getHours();
     let sunriseMinutes = '0' + sunrise.getMinutes();
