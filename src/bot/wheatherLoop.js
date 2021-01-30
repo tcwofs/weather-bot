@@ -33,7 +33,13 @@ const startWheatherLoop = (bot, localSession) => {
               localSession.DB.__wrapped__.alerts[index].arr[alert].lang
             );
           }
-          bot.telegram.sendMessage(localSession.DB.__wrapped__.alerts[index].arr[alert].id, answer, { parse_mode: 'html' });
+          
+          bot.telegram.sendMessage(localSession.DB.__wrapped__.alerts[index].arr[alert].id, answer, { parse_mode: 'html' })
+          	.then(()=>{})
+          	.catch((error) => {
+         		console.error(error);
+          	});
+          
           counter++;
           calls++;
         }
